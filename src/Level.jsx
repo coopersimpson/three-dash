@@ -6,10 +6,10 @@ import { useGLTF } from '@react-three/drei';
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
-const floor1Material = new THREE.MeshToonMaterial({ color: 'grey' });
-const floor2Material = new THREE.MeshToonMaterial({ color: 'cyan' });
-const obstacleMaterial = new THREE.MeshToonMaterial({ color: 'orangered' });
-const wallMaterial = new THREE.MeshToonMaterial({ color: 'grey' });
+const floor1Material = new THREE.MeshStandardMaterial({ color: 'grey', flatShading: true});
+const floor2Material = new THREE.MeshStandardMaterial({ color: 'cyan', flatShading: true });
+const obstacleMaterial = new THREE.MeshStandardMaterial({ color: 'orangered', flatShading: true });
+const wallMaterial = new THREE.MeshStandardMaterial({ color: 'grey', flatShading: true });
 
 export function BlockStart( {position = [0, 0, 0]} ) {
     return <group position = { position }>
