@@ -23,6 +23,19 @@ function BlockStart( {position = [0, 0, 0]} ) {
     </group>
 }
 
+function BlockEnd( {position = [0, 0, 0]} ) {
+    return <group position = { position }>
+        {/* Floor */}
+        <mesh 
+            geometry= { boxGeometry } 
+            material={ floor1Material } 
+            position={ [0, 0, 0 ]} 
+            scale={ [4, 0.2, 4] } 
+            receiveShadow>
+        </mesh>
+    </group>
+}
+
 function BlockSpinner( {position = [0, 0, 0]} ) {
     const obstacle = useRef();
     const [ speed ] = useState(() => (Math.random() + 0.2) * (Math.random() < 0.5 ? -1 : 1));
@@ -113,7 +126,7 @@ function BlockAxe( {position = [0, 0, 0]} ) {
             receiveShadow>
         </mesh>
             
-        {/* Limbo obstacle */}
+        {/* Axe obstacle */}
         <RigidBody ref={ obstacle } type="kinematicPosition" position={ [0, 0.3, 0] } restitution={ 0.2 } friction={ 0 }>
             <mesh 
                 geometry= { boxGeometry } 
@@ -128,9 +141,11 @@ function BlockAxe( {position = [0, 0, 0]} ) {
 
 export default function Level() {
   return <>
-        <BlockStart position={ [0, 0, 12] }/>
-        <BlockSpinner position={ [0, 0, 8] }/>
-        <BlockLimbo position={ [0, 0, 4] }/>
-        <BlockAxe position={ [0, 0, 0] }/>
+        <BlockStart position={ [0, 0, 16] }/>
+        <BlockSpinner position={ [0, 0, 12] }/>
+        <BlockLimbo position={ [0, 0, 8] }/>
+        <BlockAxe position={ [0, 0, 4] }/>
+        <BlockEnd position={ [0, 0, 0] }/>
+
     </>
 }
