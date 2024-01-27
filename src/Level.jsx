@@ -2,11 +2,12 @@ import * as THREE from 'three';
 import { RigidBody } from '@react-three/rapier';
 import { useState, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
+import { useGLTF } from '@react-three/drei';
 
 const boxGeometry = new THREE.BoxGeometry(1, 1, 1);
 
 const floor1Material = new THREE.MeshToonMaterial({ color: 'grey' });
-const floor2Material = new THREE.MeshToonMaterial({ color: 'greenyellow' });
+const floor2Material = new THREE.MeshToonMaterial({ color: 'cyan' });
 const obstacleMaterial = new THREE.MeshToonMaterial({ color: 'orangered' });
 const wallMaterial = new THREE.MeshToonMaterial({ color: 'grey' });
 
@@ -24,6 +25,16 @@ function BlockStart( {position = [0, 0, 0]} ) {
 }
 
 function BlockEnd( {position = [0, 0, 0]} ) {
+
+    const relic = useGLTF('/relic.glb');
+
+    // Traverse the meshes in the relic GLB file
+    relic.scene.traverse((mesh) => {
+        if (mesh.isMesh) {
+            mesh.castShadow = true;
+        }
+    });
+
     return <group position = { position }>
         {/* Floor */}
         <mesh 
@@ -33,6 +44,10 @@ function BlockEnd( {position = [0, 0, 0]} ) {
             scale={ [4, 0.2, 4] } 
             receiveShadow>
         </mesh>
+        <RigidBody type="fixed" position={ [0, 0.5, 0] } restitution={ 0.2 } friction={ 0 }>
+            {/* Relic */}
+            <primitive object={ relic.scene } scale={ [0.5, 0.5, 0.5] }/>  
+        </RigidBody>
     </group>
 }
 
