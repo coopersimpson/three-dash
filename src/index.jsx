@@ -26,7 +26,7 @@ root.render(
                 position: [ 2.5, 4, 6 ]
             } }
         >
-            <Perf/>
+            {/* <Perf/> */}
             <Experience />
         </Canvas>
     </KeyboardControls>
