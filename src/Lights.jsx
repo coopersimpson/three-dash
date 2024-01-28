@@ -5,8 +5,6 @@ export default function Lights()
 {
     const light = useRef()
 
-    console.log(light)
-
     useFrame((state) =>
     {
         light.current.position.z = state.camera.position.z + 1 - 4
