@@ -3,6 +3,8 @@ A WebGL browser based game, control a marble and get to the end goal as fast as 
 
 The marble can be controlled using WASD or the arrow keys, the player may also jump using the space bar. They must dodge all the obstacles and reach the end as fast as possible. The game features a timer which tracks how long it takes the player to reach the end.
 
+![Screenshot](screenshot.jpeg)
+
 ## Installation
 ```
 # Clone the repository from GitHub
